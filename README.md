@@ -21,9 +21,7 @@ Four: Send a json with this format:
 	"subject": "Subject",
 	"text": "Text",
 	"templateId": "TemplateID",
-	"params": {
-	  foo: bar
-	}
+	"params": { params in template }
 }
 
 ```
