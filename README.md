@@ -4,11 +4,11 @@ We have make a library to use sendgrid emails with dynamic templates
 
 ## Cloning
 
-git clone 
+git clone https://github.com/ambitus-it/sendgrid-connector
 
 ## Usage
 
-```
+```json
 
 First: Copy your APIKEY to file configs.
 Second: Change your Template Id and Dynamic Params
