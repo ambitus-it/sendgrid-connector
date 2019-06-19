@@ -1,8 +1,9 @@
 let router = require('express').Router();
+var cors = require('cors')
 let servico = require('../controller/index')
 const bodyParser = require('body-parser');
 
-router.post('/email', bodyParser.json(), function (req, res) {
+router.post('/email', cors(), bodyParser.json(), function (req, res) {
   const msg = {
       to,
       from,
