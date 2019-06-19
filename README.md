@@ -22,7 +22,7 @@ Four: Send a json with this format:
 	"text": "Text",
 	"templateId": "TemplateID",
 	"params": {
-		  foo: bar,
+	  foo: bar
 	}
 }
 
