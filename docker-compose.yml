@@ -3,6 +3,7 @@ services:
   web:
     container_name: nodesendgrid
     build: .
+    restart: always
     command: npm run start
     ports:
       - "3000:3000"
