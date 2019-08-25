@@ -1,5 +1,5 @@
 key = () => {
-    return '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';
+    return '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';
 }
 module.exports = {
   key: key
