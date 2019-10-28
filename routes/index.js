@@ -24,4 +24,17 @@ router.post('/mail/send', function (req, res) {
   }
 });
 
+router.post('/email/contacts', async function (req, res) {
+  try {
+    const  {
+       email
+    } = req.body;
+  
+    const id = await servico.addContact(email);
+    res.status(200).send(id)
+  } catch(e) {
+    console.log(e)
+  }
+});
+
 module.exports = router;

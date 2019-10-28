@@ -1,6 +1,7 @@
 key = () => {
-    return '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';
+    return '<<YOUR_API_KEY_HERE>>';
 }
+
 module.exports = {
   key: key
 }
