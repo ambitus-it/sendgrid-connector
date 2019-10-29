@@ -33,7 +33,7 @@ router.post('/email/contacts', async function (req, res) {
     const id = await servico.addContact(email);
     res.status(200).send(id)
   } catch(e) {
-    console.log(e)
+    console.log(e.message)
   }
 });
 

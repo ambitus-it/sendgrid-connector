@@ -1,6 +1,7 @@
 const sgMail = require("@sendgrid/mail");
 const getKey = require("../config/key");
 const http = require("https");
+const axios = require("axios");
 sgMail.setApiKey(getKey.key());
 
 sendEmail = (to, from, subject, text, templateId, params) => {
@@ -24,29 +25,17 @@ addContact = email => {
   try {
     const options = {
       method: "PUT",
-      hostname: "api.sendgrid.com",
-      port: null,
-      path: "/v3/marketing/contacts",
       headers: {
-        authorization: `Bearer ${getKey.key()}`
-      }
+        Authorization: `Bearer ${getKey.key()}`,
+        "Content-Type": "application/json"
+      },
+      data: { contacts: [{ email }] }
     };
-
-    const req = http.request(options, function(res) {
-      const chunks = [];
-
-      res.on("data", function(chunk) {
-        chunks.push(chunk);
+    return axios("https://api.sendgrid.com/v3/marketing/contacts", options)
+      .then(res => res.data)
+      .catch(err => {
+        throw new Error(err.message);
       });
-
-      res.on("end", function() {
-        const body = Buffer.concat(chunks);
-        return body.toString();
-      });
-    });
-
-    req.write(`{"contacts":[{"email":"${email}"}]}`);
-    req.end();
   } catch (err) {
     console.log(err.message);
   }
