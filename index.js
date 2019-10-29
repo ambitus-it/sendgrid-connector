@@ -1,22 +1,18 @@
-const app = require('./config/custom-express')();
-const fs = require('fs');
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/api2.singularegestao.com.br/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/api2.singularegestao.com.br/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/api2.singularegestao.com.br/chain.pem', 'utf8');
+const express = require('express');
+const bodyParser = require('body-parser');
+const { corsFilter } = require('./config/cors')
+const cors = require('cors')
+const apiRoutes = require('./routes/')
 
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
+const app = express();
 
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
+app.use(express.json())
+app.use(corsFilter);
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use('/', apiRoutes);
 
-httpServer.listen(80, () => {
-	console.log('HTTP Server running on port 80');
-});
+console.log('Listening on port 3000')
 
-httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
-});
+app.listen(3000)
