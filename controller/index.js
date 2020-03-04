@@ -4,18 +4,33 @@ const http = require("https");
 const axios = require("axios");
 sgMail.setApiKey(getKey.key());
 
-sendEmail = (to, from, subject, text, templateId, params) => {
+sendEmail = async ({
+  to,
+  cc,
+  bcc,
+  from,
+  subject,
+  text,
+  templateId,
+  params
+}) => {
   try {
     const msg = {
-      to: to,
-      from: from,
-      subject: subject,
-      text: text,
-      templateId: templateId,
+      to,
+      cc,
+      bcc,
+      from,
+      subject,
+      text,
+      templateId,
       dynamic_template_data: params
     };
 
-    sgMail.send(msg);
+    const result = await sgMail.send(msg);
+
+    console.log(result)
+
+    return result
   } catch (err) {
     console.log(err.message);
   }

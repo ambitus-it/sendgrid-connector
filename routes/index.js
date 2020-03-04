@@ -7,32 +7,27 @@ router.get('/mail', function (req, res) {
 
 router.post('/mail/send', function (req, res) {
   try {
-    const msg = {
-        to,
-        from,
-        subject,
-        text,
-        templateId,
-        params
-    } = req.body;
-  
-    const retEmail = servico.sendEmail(msg.to, msg.from, msg.subject, msg.text, msg.templateId, msg.params);
+    const {
+      body
+    } = req;
+
+    const retEmail = servico.sendEmail(body);
 
     res.status(200).send(retEmail)
-  } catch(e) {
+  } catch (e) {
     console.log(e)
   }
 });
 
-router.post('/email/contacts', async function (req, res) {
+router.post('/mail/contacts', async function (req, res) {
   try {
-    const  {
-       email
+    const {
+      email
     } = req.body;
-  
+
     const id = await servico.addContact(email);
     res.status(200).send(id)
-  } catch(e) {
+  } catch (e) {
     console.log(e.message)
   }
 });

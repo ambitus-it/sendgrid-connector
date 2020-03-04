@@ -1,11 +1,8 @@
-FROM node
-
-RUN apt-get update && apt-get install -y
+FROM keymetrics/pm2:latest-alpine
 
 WORKDIR /app
-
-COPY . /app
-RUN npm install
-
 EXPOSE 3000
-CMD ["node", "index.js"]
+COPY . .
+RUN yarn
+
+ENTRYPOINT exec pm2-runtime start pm2.json
