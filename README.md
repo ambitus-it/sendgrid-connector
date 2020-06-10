@@ -20,6 +20,7 @@ Four: Send a json with this format:
 	"from": "emailFrom",
 	"subject": "Subject",
 	"text": "Text",
+	"html": "text/html",
 	"templateId": "TemplateID",
 	"params": "{
 	    foo: bar	
