@@ -11,6 +11,7 @@ sendEmail = async ({
   from,
   subject,
   text,
+  html,
   templateId,
   params
 }) => {
@@ -22,6 +23,7 @@ sendEmail = async ({
       from,
       subject,
       text,
+      html,
       templateId,
       dynamic_template_data: params
     };
